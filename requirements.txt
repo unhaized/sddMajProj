@@ -1,0 +1,8 @@
+streamlit
+pandas
+firebase-admin
+pyrebase4
+calplot
+matplotlib
+pillow
+plyer
