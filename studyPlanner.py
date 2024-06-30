@@ -9,7 +9,7 @@ from PIL import Image
 import base64
 
 # Setting up the page configuration for the Streamlit app
-st.set_page_config(page_title="Study Planner", layout="wide")
+st.set_page_config(page_title="SavvyStudy", layout="wide")
 
 # Load the image and convert it to base64
 def get_base64_of_bin_file(bin_file):
@@ -22,7 +22,7 @@ def get_img_with_base64(file_path):
     img_data = get_base64_of_bin_file(file_path)
     return img_format + img_data
 
-logo_base64 = get_img_with_base64("\\imgs\\ssImg.png")
+logo_base64 = get_img_with_base64(\img\ssImg.png")
 
 # CSS to position the image in the top right corner
 st.markdown(
@@ -67,6 +67,11 @@ def homepage():
         - **Visualize schedule**: View your tasks in a calendar format.
     """)
     st.markdown("Please log in or sign up to get started.")
+    
+    # Add user guide download link
+    with open("userGuide.pdf", "rb") as pdf_file:
+        PDFbyte = pdf_file.read()
+        st.download_button(label="Download User Guide", data=PDFbyte, file_name="userGuide.pdf", mime='application/octet-stream')
 
 if not st.session_state.logged_in:
     homepage()
