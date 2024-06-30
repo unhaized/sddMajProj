@@ -22,7 +22,7 @@ def get_img_with_base64(file_path):
     img_data = get_base64_of_bin_file(file_path)
     return img_format + img_data
 
-logo_base64 = get_img_with_base64(\img\ssImg.png")
+logo_base64 = get_img_with_base64(imgs/ssImg.png")
 
 # CSS to position the image in the top right corner
 st.markdown(
