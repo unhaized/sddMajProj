@@ -2,11 +2,11 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime, timedelta
 from firebase_config import auth, db  # Custom module for Firebase configuration
-import time #time lol
-from plyer import notification  #
-from PIL import Image  # Import PIL for image handling
-import base64  # For base64 encoding
-
+import matplotlib.pyplot as plt
+import time
+from plyer import notification
+from PIL import Image
+import base64
 
 # Setting up the page configuration for the Streamlit app
 st.set_page_config(page_title="Study Planner", layout="wide")
@@ -22,7 +22,7 @@ def get_img_with_base64(file_path):
     img_data = get_base64_of_bin_file(file_path)
     return img_format + img_data
 
-logo_base64 = get_img_with_base64("imgs/ssImg.png")
+logo_base64 = get_img_with_base64("C:\\Users\\harim\\Desktop\\sddMajProj\\imgs\\ssImg.png")
 
 # CSS to position the image in the top right corner
 st.markdown(
@@ -41,6 +41,19 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+# Initialize session state variables
+if 'logged_in' not in st.session_state:
+    st.session_state.logged_in = False
+
+if 'user' not in st.session_state:
+    st.session_state.user = None
+
+if 'tasks' not in st.session_state:
+    st.session_state.tasks = []
+
+if 'reminders' not in st.session_state:
+    st.session_state.reminders = []
 
 # Homepage overview
 def homepage():
@@ -362,7 +375,6 @@ else:
 
         styled_df = tasks_df.style.apply(apply_style, axis=1)
         st.dataframe(styled_df)
-        
 
     with tab5:
         st.header("Customize Study Plans")
