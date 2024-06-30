@@ -2,9 +2,6 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime, timedelta
 from firebase_config import auth, db  # Custom module for Firebase configuration
-import calplot  
-import matplotlib.pyplot as plt  
-from streamlit_calendar import calendar  # Custom module for calendar integration
 import time #time lol
 from plyer import notification  #
 from PIL import Image  # Import PIL for image handling
@@ -366,20 +363,6 @@ else:
         styled_df = tasks_df.style.apply(apply_style, axis=1)
         st.dataframe(styled_df)
         
-        # Update calendar events whenever tasks change
-        calendar_events = [
-            {
-                'title': task['name'],
-                'start': datetime.combine(task['due_date'], task['due_time']).isoformat(),
-                'end': (datetime.combine(task['due_date'], task['due_time']) + timedelta(hours=1)).isoformat(),
-                'color': 'blue' if task['type'] == 'Study Session' else 'green' if task['type'] == 'Assignment' else 'red'
-            }
-            for task in st.session_state.tasks
-        ]
-        
-        # Display tasks in a calendar view
-        st.subheader("Tasks Calendar")
-        calendar(events=calendar_events)
 
     with tab5:
         st.header("Customize Study Plans")
